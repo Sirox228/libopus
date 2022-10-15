@@ -3,6 +3,7 @@ DEST=$(cd "$(dirname "$0")" && pwd)/build/$1
 HOST_ARCH="linux-x86_64"
 
 cd opus
+./configure --help
 
 case "$1" in
     clean)
