@@ -3,6 +3,8 @@ DEST=$(cd "$(dirname "$0")" && pwd)/build/$1
 HOST_ARCH="linux-x86_64"
 
 cd opus
+./autogen.sh
+./configure --host=arm-androideabi-linux --enable-float-approx --disable-doc --disable-extra-programs
 
 case "$1" in
     clean)
@@ -15,8 +17,6 @@ case "$1" in
         NDKP=${TCVER[0]}/prebuilt/${HOST_ARCH}/bin/arm-linux-androideabi-
         NDKF="--sysroot ${NDK}/platforms/android-${NDKABI}/arch-arm"
         NDKARCH="-march=armv7-a -mfloat-abi=softfp -Wl,--fix-cortex-a8"
-        ./autogen.sh
-        ./configure --host=arm-androideabi-linux --enable-float-approx=yes --enable_custom_modes=yes --enable_asm=yes --host_cpu=arm --enable_intrinsics=yes --cpu_arm=yes --enable_assertions=yes --disable-doc=yes --disable-extra-programs=yes
         make HOST_CC="gcc -m32" CFLAGS="-O2 -pipe" HOST_CFLAGS="-O2 -pipe -mtune=generic" LDFLAGS="" HOST_LDFLAGS="" TARGET_CFLAGS="${CFLAGS}" TARGET_LDFLAGS="${LDFLAGS}" TARGET_LIBS="${EXTRA_LIBS}" TARGET_SONAME="libogg.so" INSTALL_SONAME="libogg.so" CROSS="$NDKP" TARGET_FLAGS="${NDKF} ${NDKARCH}" TARGET_SYS=Linux DESTDIR="${DEST}" PREFIX=
         ;;
     arm64-v8a)
@@ -25,8 +25,6 @@ case "$1" in
         TCVER=("${NDK}"/toolchains/aarch64-linux-android-4.*)
         NDKP=${TCVER[0]}/prebuilt/${HOST_ARCH}/bin/aarch64-linux-android-
         NDKF="--sysroot ${NDK}/platforms/android-${NDKABI}/arch-arm64"
-        ./autogen.sh
-        ./configure --host=arm-androideabi-linux --enable-float-approx=yes --enable_custom_modes=yes --enable_asm=yes --host_cpu=aarch64 --enable_intrinsics=yes --cpu_arm=yes --enable_assertions=yes=yes --disable-doc=yes --disable-extra-programs=yes
         make HOST_CC="gcc" CFLAGS="-O2 -pipe" HOST_CFLAGS="-O2 -pipe -mtune=generic" LDFLAGS="" HOST_LDFLAGS="" TARGET_CFLAGS="${CFLAGS}" TARGET_LDFLAGS="${LDFLAGS}" TARGET_LIBS="${EXTRA_LIBS}" TARGET_SONAME="libogg.so" INSTALL_SONAME="libogg.so" CROSS="$NDKP" TARGET_FLAGS="${NDKF}" TARGET_SYS=Linux DESTDIR="${DEST}" PREFIX=
         ;;
     x86)
@@ -35,8 +33,6 @@ case "$1" in
         TCVER=("${NDK}"/toolchains/x86-4.*)
         NDKP=${TCVER[0]}/prebuilt/${HOST_ARCH}/bin/i686-linux-android-
         NDKF="--sysroot ${NDK}/platforms/android-${NDKABI}/arch-x86"
-        ./autogen.sh
-        ./configure --host=arm-androideabi-linux --enable-float-approx=yes --enable_custom_modes=yes --enable_asm=yes --host_cpu=x86 --enable_intrinsics=yes --cpu_x86=yes --enable_assertions=yes --disable-doc=yes --disable-extra-programs=yes
         make HOST_CC="gcc -m32" CFLAGS="-O2 -pipe" HOST_CFLAGS="-O2 -pipe -mtune=generic" LDFLAGS="" HOST_LDFLAGS="" TARGET_CFLAGS="${CFLAGS}" TARGET_LDFLAGS="${LDFLAGS}" TARGET_LIBS="${EXTRA_LIBS}" TARGET_SONAME="libogg.so" INSTALL_SONAME="libogg.so" CROSS="$NDKP" TARGET_FLAGS="$NDKF" TARGET_SYS=Linux DESTDIR="${DEST}" PREFIX=
         ;;
     x86_64)
@@ -45,8 +41,6 @@ case "$1" in
         TCVER=("${NDK}"/toolchains/x86_64-4.*)
         NDKP=${TCVER[0]}/prebuilt/${HOST_ARCH}/bin/x86_64-linux-android-
         NDKF="--sysroot ${NDK}/platforms/android-${NDKABI}/arch-x86_64"
-        ./autogen.sh
-        ./configure --host=arm-androideabi-linux --enable-float-approx=yes --enable_custom_modes=yes --enable_asm=yes --host_cpu=x86_64 --enable_intrinsics=yes --cpu_x86=yes --enable_assertions=yes --disable-doc=yes --disable-extra-programs=yes
         make HOST_CC="gcc" CFLAGS="-O2 -pipe" HOST_CFLAGS="-O2 -pipe -mtune=generic" LDFLAGS="" HOST_LDFLAGS="" TARGET_CFLAGS="${CFLAGS}" TARGET_LDFLAGS="${LDFLAGS}" TARGET_LIBS="${EXTRA_LIBS}" TARGET_SONAME="libogg.so" INSTALL_SONAME="libogg.so" CROSS="$NDKP" TARGET_FLAGS="${NDKF}" TARGET_SYS=Linux DESTDIR="${DEST}" PREFIX=
         ;;
     *)
