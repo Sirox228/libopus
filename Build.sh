@@ -4,7 +4,8 @@ HOST_ARCH="linux-x86_64"
 
 cd opus
 ./autogen.sh
-./configure --host=arm-androideabi-linux --enable-float-approx --disable-doc --disable-extra-programs
+# ./configure --host=arm-androideabi-linux --enable-float-approx --disable-doc --disable-extra-programs
+./configure --host=arm-androideabi-linux --enable-float-approx=true --enable-custom-modes=true --enable-asm=true --enable-intrinsics=true --enable-assertions=true --disable-doc --disable-extra-programs
 
 case "$1" in
     clean)
