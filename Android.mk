@@ -168,8 +168,6 @@ ifeq ($(strip $(TARGET_ARCH)),arm)
         -DOPUS_ARM_INLINE_NEON \
         -DOPUS_ARM_MAY_HAVE_NEON \
         -DOPUS_ARM_PRESUME_NEON \
-        -DOPUS_ARM_INLINE_ASM \
-        -DOPUS_ARM_EXTERNAL_ASM \
         -mfpu=neon \
         -DOPUS_ARM_MAY_HAVE_NEON_INTR \
         -DOPUS_ARM_PRESUME_NEON_INTR \
@@ -204,8 +202,6 @@ ifeq ($(strip $(TARGET_ARCH)),arm64)
         -DOPUS_ARM_INLINE_NEON \
         -DOPUS_ARM_MAY_HAVE_NEON \
         -DOPUS_ARM_PRESUME_NEON \
-        -DOPUS_ARM_INLINE_ASM \
-        -DOPUS_ARM_EXTERNAL_ASM \
         -mfpu=neon \
         -DOPUS_ARM_MAY_HAVE_NEON_INTR \
         -DOPUS_ARM_PRESUME_AARCH64_NEON_INTR \
