@@ -20,8 +20,50 @@ LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus/src/analysis.h \
     $(LOCAL_PATH)/opus/src/mapping_matrix.h \
     $(LOCAL_PATH)/opus/src/mlp.h \
-    $(LOCAL_PATH)/opus/ src/tansig_table.h \
-    $(LOCAL_PATH)/opus/silk
+    $(LOCAL_PATH)/opus/src/tansig_table.h \
+    $(LOCAL_PATH)/opus/silk/debug.h \
+    $(LOCAL_PATH)/opus/silk/control.h \
+    $(LOCAL_PATH)/opus/silk/errors.h \
+    $(LOCAL_PATH)/opus/silk/API.h \
+    $(LOCAL_PATH)/opus/silk/typedef.h \
+    $(LOCAL_PATH)/opus/silk/define.h \
+    $(LOCAL_PATH)/opus/silk/main.h \
+    $(LOCAL_PATH)/opus/silk/x86/main_sse.h \
+    $(LOCAL_PATH)/opus/silk/PLC.h \
+    $(LOCAL_PATH)/opus/silk/structs.h \
+    $(LOCAL_PATH)/opus/silk/tables.h \
+    $(LOCAL_PATH)/opus/silk/tuning_parameters.h \
+    $(LOCAL_PATH)/opus/silk/Inlines.h \
+    $(LOCAL_PATH)/opus/silk/MacroCount.h \
+    $(LOCAL_PATH)/opus/silk/MacroDebug.h \
+    $(LOCAL_PATH)/opus/silk/macros.h \
+    $(LOCAL_PATH)/opus/silk/NSQ.h \
+    $(LOCAL_PATH)/opus/silk/pitch_est_defines.h \
+    $(LOCAL_PATH)/opus/silk/resampler_private.h \
+    $(LOCAL_PATH)/opus/silk/resampler_rom.h \
+    $(LOCAL_PATH)/opus/silk/resampler_structs.h \
+    $(LOCAL_PATH)/opus/silk/SigProc_FIX.h \
+    $(LOCAL_PATH)/opus/silk/x86/SigProc_FIX_sse.h \
+    $(LOCAL_PATH)/opus/silk/arm/biquad_alt_arm.h \
+    $(LOCAL_PATH)/opus/silk/arm/LPC_inv_pred_gain_arm.h \
+    $(LOCAL_PATH)/opus/silk/arm/macros_armv4.h \
+    $(LOCAL_PATH)/opus/silk/arm/macros_armv5e.h \
+    $(LOCAL_PATH)/opus/silk/arm/macros_arm64.h \
+    $(LOCAL_PATH)/opus/silk/arm/SigProc_FIX_armv4.h \
+    $(LOCAL_PATH)/opus/silk/arm/SigProc_FIX_armv5e.h \
+    $(LOCAL_PATH)/opus/silk/arm/NSQ_del_dec_arm.h \
+    $(LOCAL_PATH)/opus/silk/arm/NSQ_neon.h \
+    $(LOCAL_PATH)/opus/silk/fixed/main_FIX.h \
+    $(LOCAL_PATH)/opus/silk/fixed/structs_FIX.h \
+    $(LOCAL_PATH)/opus/silk/fixed/arm/warped_autocorrelation_FIX_arm.h \
+    $(LOCAL_PATH)/opus/silk/fixed/mips/noise_shape_analysis_FIX_mipsr1.h \
+    $(LOCAL_PATH)/opus/silk/fixed/mips/warped_autocorrelation_FIX_mipsr1.h \
+    $(LOCAL_PATH)/opus/silk/float/main_FLP.h \
+    $(LOCAL_PATH)/opus/silk/float/structs_FLP.h \
+    $(LOCAL_PATH)/opus/silk/float/SigProc_FLP.h \
+    $(LOCAL_PATH)/opus/silk/mips/macros_mipsr1.h \
+    $(LOCAL_PATH)/opus/silk/mips/NSQ_del_dec_mipsr1.h \
+    $(LOCAL_PATH)/opus/silk/mips/sigproc_fix_mipsr1.h
 
 LOCAL_SRC_FILES := \
     $(LOCAL_PATH)/opus/celt/bands.c \
