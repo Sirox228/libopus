@@ -21,7 +21,7 @@ LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus/src/mapping_matrix.h \
     $(LOCAL_PATH)/opus/src/mlp.h \
     $(LOCAL_PATH)/opus/src/tansig_table.h \
-    $(LOCAL_PATH)/opus/silk/config.h \
+    $(LOCAL_PATH)/opus/src/config.h \
     $(LOCAL_PATH)/opus/silk/debug.h \
     $(LOCAL_PATH)/opus/silk/control.h \
     $(LOCAL_PATH)/opus/silk/errors.h \
