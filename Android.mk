@@ -108,7 +108,7 @@ LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus/silk/mips/sigproc_fix_mipsr1.h
 
 LOCAL_SRC_FILES := \
-    $(LOCAL_PATH)/opus/celt/bands.c \
+    opus/celt/bands.c \
     $(LOCAL_PATH)/opus/celt/celt.c \
     $(LOCAL_PATH)/opus/celt/celt_encoder.c \
     $(LOCAL_PATH)/opus/celt/celt_decoder.c \
