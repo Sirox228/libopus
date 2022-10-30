@@ -9,7 +9,7 @@ cd ../
 
 echo "starting"
 
-tree
+exit 1
 
 ${NDK}/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
 
