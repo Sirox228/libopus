@@ -8,6 +8,6 @@ cd ../
 
 echo "starting"
 
-${NDK}/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
+${NDK}/ndk-build NDK_PROJECT_PATH=./opus NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
 
 echo "done"
