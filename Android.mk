@@ -14,14 +14,62 @@ LOCAL_CFLAGS := \
     -DHAVE_CONFIG_H
 
 LOCAL_C_INCLUDES := \
-    $(LOCAL_PATH)/opus/celt \
+    $(LOCAL_PATH)/opus/celt/arch.h \
+    $(LOCAL_PATH)/opus/celt/bands.h \
+    $(LOCAL_PATH)/opus/celt/celt.h \
+    $(LOCAL_PATH)/opus/celt/cpu_support.h \
+    $(LOCAL_PATH)/opus/celt/cwrs.h \
+    $(LOCAL_PATH)/opus/celt/ecintrin.h \
+    $(LOCAL_PATH)/opus/celt/entcode.h \
+    $(LOCAL_PATH)/opus/celt/entdec.h \
+    $(LOCAL_PATH)/opus/celt/entenc.h \
+    $(LOCAL_PATH)/opus/celt/fixed_debug.h \
+    $(LOCAL_PATH)/opus/celt/fixed_generic.h \
+    $(LOCAL_PATH)/opus/celt/float_cast.h \
+    $(LOCAL_PATH)/opus/celt/_kiss_fft_guts.h \
+    $(LOCAL_PATH)/opus/celt/kiss_fft.h \
+    $(LOCAL_PATH)/opus/celt/laplace.h \
+    $(LOCAL_PATH)/opus/celt/mathops.h \
+    $(LOCAL_PATH)/opus/celt/mdct.h \
+    $(LOCAL_PATH)/opus/celt/mfrngcod.h \
+    $(LOCAL_PATH)/opus/celt/modes.h \
+    $(LOCAL_PATH)/opus/celt/os_support.h \
+    $(LOCAL_PATH)/opus/celt/pitch.h \
+    $(LOCAL_PATH)/opus/celt/celt_lpc.h \
+    $(LOCAL_PATH)/opus/celt/x86/celt_lpc_sse.h \
+    $(LOCAL_PATH)/opus/celt/quant_bands.h \
+    $(LOCAL_PATH)/opus/celt/rate.h \
+    $(LOCAL_PATH)/opus/celt/stack_alloc.h \
+    $(LOCAL_PATH)/opus/celt/vq.h \
+    $(LOCAL_PATH)/opus/celt/static_modes_float.h \
+    $(LOCAL_PATH)/opus/celt/static_modes_fixed.h \
+    $(LOCAL_PATH)/opus/celt/static_modes_float_arm_ne10.h \
+    $(LOCAL_PATH)/opus/celt/static_modes_fixed_arm_ne10.h \
+    $(LOCAL_PATH)/opus/celt/arm/armcpu.h \
+    $(LOCAL_PATH)/opus/celt/arm/fixed_armv4.h \
+    $(LOCAL_PATH)/opus/celt/arm/fixed_armv5e.h \
+    $(LOCAL_PATH)/opus/celt/arm/fixed_arm64.h \
+    $(LOCAL_PATH)/opus/celt/arm/kiss_fft_armv4.h \
+    $(LOCAL_PATH)/opus/celt/arm/kiss_fft_armv5e.h \
+    $(LOCAL_PATH)/opus/celt/arm/pitch_arm.h \
+    $(LOCAL_PATH)/opus/celt/arm/fft_arm.h \
+    $(LOCAL_PATH)/opus/celt/arm/mdct_arm.h \
+    $(LOCAL_PATH)/opus/celt/mips/celt_mipsr1.h \
+    $(LOCAL_PATH)/opus/celt/mips/fixed_generic_mipsr1.h \
+    $(LOCAL_PATH)/opus/celt/mips/kiss_fft_mipsr1.h \
+    $(LOCAL_PATH)/opus/celt/mips/mdct_mipsr1.h \
+    $(LOCAL_PATH)/opus/celt/mips/pitch_mipsr1.h \
+    $(LOCAL_PATH)/opus/celt/mips/vq_mipsr1.h \
+    $(LOCAL_PATH)/opus/celt/x86/pitch_sse.h \
+    $(LOCAL_PATH)/opus/celt/x86/vq_sse.h \
+    $(LOCAL_PATH)/opus/celt/x86/x86cpu.h \
     $(LOCAL_PATH)/opus/include \
     $(LOCAL_PATH)/opus/src/opus_private.h \
     $(LOCAL_PATH)/opus/src/analysis.h \
     $(LOCAL_PATH)/opus/src/mapping_matrix.h \
     $(LOCAL_PATH)/opus/src/mlp.h \
     $(LOCAL_PATH)/opus/src/tansig_table.h \
-    $(LOCAL_PATH)/opus/src/config.h \
+    $(LOCAL_PATH)/opus/config.h \
     $(LOCAL_PATH)/opus/silk/debug.h \
     $(LOCAL_PATH)/opus/silk/control.h \
     $(LOCAL_PATH)/opus/silk/errors.h \
@@ -202,7 +250,30 @@ LOCAL_SRC_FILES := \
     $(LOCAL_PATH)/opus/silk/float/scale_copy_vector_FLP.c \
     $(LOCAL_PATH)/opus/silk/float/scale_vector_FLP.c \
     $(LOCAL_PATH)/opus/silk/float/schur_FLP.c \
-    $(LOCAL_PATH)/opus/silk/float/sort_FLP.c
+    $(LOCAL_PATH)/opus/silk/float/sort_FLP.c \
+    $(LOCAL_PATH)/opus/silk/fixed/LTP_analysis_filter_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/LTP_scale_ctrl_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/corrMatrix_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/encode_frame_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/find_LPC_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/find_LTP_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/find_pitch_lags_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/find_pred_coefs_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/noise_shape_analysis_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/process_gains_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/regularize_correlations_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/residual_energy16_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/residual_energy_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/warped_autocorrelation_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/apply_sine_window_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/autocorr_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/burg_modified_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/k2a_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/k2a_Q16_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/pitch_analysis_core_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/vector_ops_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/schur64_FIX.c \
+    $(LOCAL_PATH)/opus/silk/fixed/schur_FIX.c
 
 ifeq ($(strip $(TARGET_ARCH)),arm)
     LOCAL_SDK_VERSION := 19
