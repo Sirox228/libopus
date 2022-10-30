@@ -4,14 +4,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := opus
 
-LOCAL_CFLAGS := \
-    -DOPUS_BUILD \
-    -DVAR_ARRAYS \
-    -DCUSTOM_MODES \
-    -DFLOAT_APPROX \
-    -DCPU_INFO_BY_C \
-    -DENABLE_ASSERTIONS \
-    -DHAVE_CONFIG_H
+LOCAL_CFLAGS := -DHAVE_CONFIG_H
 
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus/celt/arch.h \
@@ -277,70 +270,60 @@ LOCAL_SRC_FILES := \
 
 ifeq ($(strip $(TARGET_ARCH)),arm)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += \
-        -DOPUS_ARM_ASM \
-        -DOPUS_ARM_INLINE_NEON \
-        -DOPUS_ARM_MAY_HAVE_NEON \
-        -DOPUS_ARM_PRESUME_NEON \
-        -mfpu=neon \
-        -DOPUS_ARM_MAY_HAVE_NEON_INTR \
-        -DOPUS_ARM_PRESUME_NEON_INTR \
-        -DCPU_ARM \
-        -DOPUS_HAVE_RTCD \
-        -DOPUS_CHECK_ASM
+    LOCAL_CFLAGS += -DCPU_ARM 
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
-        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
-        $(LOCAL_PATH)/opus/celt/arm/armopts.s \
-        $(LOCAL_PATH)/opus/celt/arm/celt_neon_intr.c \
-        $(LOCAL_PATH)/opus/celt/arm/pitch_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c \
-        $(LOCAL_PATH)/opus/silk/arm/biquad_alt_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/LPC_inv_pred_gain_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/NSQ_del_dec_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/NSQ_neon.c \
-        $(LOCAL_PATH)/opus/silk/fixed/arm/warped_autocorrelation_FIX_neon_intr.c
+        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),x86)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += \
-        -DCPU_X86
+    LOCAL_CFLAGS += -DCPU_X86
+    LOCAL_SRC_FILES += \
+        $(LOCAL_PATH)/opus/celt/x86/x86cpu.c \
+        $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse2.c \
+        $(LOCAL_PATH)/opus/celt/x86/vq_sse2.c \
+        $(LOCAL_PATH)/opus/celt/x86/celt_lpc_sse4_1.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/x86/x86_silk_map.c \
+        $(LOCAL_PATH)/opus/silk/x86/NSQ_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/x86/NSQ_del_dec_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/x86/VAD_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/x86/VQ_WMat_EC_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/fixed/x86/vector_ops_FIX_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/fixed/x86/burg_modified_FIX_sse4_1.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),arm64)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += \
-        -DOPUS_ARM_ASM \
-        -DOPUS_ARM_INLINE_NEON \
-        -DOPUS_ARM_MAY_HAVE_NEON \
-        -DOPUS_ARM_PRESUME_NEON \
-        -mfpu=neon \
-        -DOPUS_ARM_MAY_HAVE_NEON_INTR \
-        -DOPUS_ARM_PRESUME_AARCH64_NEON_INTR \
-        -DCPU_ARM \
-        -DOPUS_HAVE_RTCD \
-        -DOPUS_CHECK_ASM
+    LOCAL_CFLAGS += -DCPU_ARM
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
-        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
-        $(LOCAL_PATH)/opus/celt/arm/armopts.s \
-        $(LOCAL_PATH)/opus/celt/arm/celt_neon_intr.c \
-        $(LOCAL_PATH)/opus/celt/arm/pitch_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c \
-        $(LOCAL_PATH)/opus/silk/arm/biquad_alt_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/LPC_inv_pred_gain_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/NSQ_del_dec_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/NSQ_neon.c \
-        $(LOCAL_PATH)/opus/silk/fixed/arm/warped_autocorrelation_FIX_neon_intr.c
+        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),x86_64)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += \
-        -DCPU_X86
+    LOCAL_CFLAGS += -DCPU_X86
+    LOCAL_SRC_FILES += \
+        $(LOCAL_PATH)/opus/celt/x86/x86cpu.c \
+        $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse2.c \
+        $(LOCAL_PATH)/opus/celt/x86/vq_sse2.c \
+        $(LOCAL_PATH)/opus/celt/x86/celt_lpc_sse4_1.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/x86/x86_silk_map.c \
+        $(LOCAL_PATH)/opus/silk/x86/NSQ_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/x86/NSQ_del_dec_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/x86/VAD_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/x86/VQ_WMat_EC_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/fixed/x86/vector_ops_FIX_sse4_1.c \
+        $(LOCAL_PATH)/opus/silk/fixed/x86/burg_modified_FIX_sse4_1.c
 endif
 
 include $(BUILD_STATIC_LIBRARY)
