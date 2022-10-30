@@ -9,6 +9,7 @@ cd ../
 
 echo "starting"
 
+#idk why opus is so stupid that includes config.h in "" instead of <> when it is outside src folder
 cp -r opus/config.h opus/src/config.h
 
 ${NDK}/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
