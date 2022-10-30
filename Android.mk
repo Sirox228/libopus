@@ -7,7 +7,7 @@ LOCAL_MODULE := opus
 LOCAL_CFLAGS := -DHAVE_CONFIG_H
 
 LOCAL_C_INCLUDES := \
-    opus/config.h \
+    $(LOCAL_PATH)/opus \
     $(LOCAL_PATH)/opus/celt/arch.h \
     $(LOCAL_PATH)/opus/celt/bands.h \
     $(LOCAL_PATH)/opus/celt/celt.h \
