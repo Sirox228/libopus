@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := opus
+LOCAL_MODULE := libopus
 
 LOCAL_CFLAGS := -DHAVE_CONFIG_H
 
