@@ -28,7 +28,7 @@
 /* Original code from libtheora modified to suit to Opus */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef OPUS_HAVE_RTCD

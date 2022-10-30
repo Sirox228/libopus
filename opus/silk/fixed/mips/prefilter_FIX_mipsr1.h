@@ -28,7 +28,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #define __PREFILTER_FIX_MIPSR1_H__
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #include "main_FIX.h"
