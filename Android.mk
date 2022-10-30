@@ -222,7 +222,7 @@ ifeq ($(strip $(TARGET_ARCH)),x86_64)
         $(LOCAL_PATH)/opus/celt/x86/x86cpu.c \
         $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c \
         $(LOCAL_PATH)/opus/celt/x86/pitch_sse2.c \
-        $(LOCAL_PATH)/opus/celt/x86/vq_sse2.c
+        $(LOCAL_PATH)/opus/celt/x86/vq_sse2.c \
         $(LOCAL_PATH)/opus/celt/x86/celt_lpc_sse4_1.c \
         $(LOCAL_PATH)/opus/celt/x86/pitch_sse4_1.c \
         $(LOCAL_PATH)/opus/silk/x86/x86_silk_map.c \
