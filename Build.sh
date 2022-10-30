@@ -9,6 +9,8 @@ cd ../
 
 echo "starting"
 
+cp -r opus/config.h opus/src/config.h
+
 ${NDK}/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
 
 echo "done"
