@@ -203,7 +203,7 @@ ifeq ($(strip $(TARGET_ARCH)),x86)
     LOCAL_CFLAGS += -DCPU_X86
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/x86/x86cpu.c \
-        $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c \
+        $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),arm64)
