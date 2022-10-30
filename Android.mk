@@ -184,10 +184,7 @@ LOCAL_SRC_FILES := \
     $(LOCAL_PATH)/opus/silk/fixed/pitch_analysis_core_FIX.c \
     $(LOCAL_PATH)/opus/silk/fixed/vector_ops_FIX.c \
     $(LOCAL_PATH)/opus/silk/fixed/schur64_FIX.c \
-    $(LOCAL_PATH)/opus/silk/fixed/schur_FIX.c \
-    $(LOCAL_PATH)/opus/celt/x86/pitch_sse.c \
-    $(LOCAL_PATH)/opus/celt/x86/pitch_sse2.c \
-    $(LOCAL_PATH)/opus/celt/x86/vq_sse2.c
+    $(LOCAL_PATH)/opus/silk/fixed/schur_FIX.c
 
 ifeq ($(strip $(TARGET_ARCH)),arm)
     LOCAL_SDK_VERSION := 19
@@ -203,7 +200,10 @@ ifeq ($(strip $(TARGET_ARCH)),x86)
     LOCAL_CFLAGS += -DCPU_X86
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/x86/x86cpu.c \
-        $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c
+        $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse2.c \
+        $(LOCAL_PATH)/opus/celt/x86/vq_sse2.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),arm64)
@@ -221,6 +221,9 @@ ifeq ($(strip $(TARGET_ARCH)),x86_64)
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/x86/x86cpu.c \
         $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse.c \
+        $(LOCAL_PATH)/opus/celt/x86/pitch_sse2.c \
+        $(LOCAL_PATH)/opus/celt/x86/vq_sse2.c
         $(LOCAL_PATH)/opus/celt/x86/celt_lpc_sse4_1.c \
         $(LOCAL_PATH)/opus/celt/x86/pitch_sse4_1.c \
         $(LOCAL_PATH)/opus/silk/x86/x86_silk_map.c \
