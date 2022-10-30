@@ -7,6 +7,7 @@ LOCAL_MODULE := opus
 LOCAL_CFLAGS := -DHAVE_CONFIG_H
 
 LOCAL_C_INCLUDES := \
+    opus/config.h \
     $(LOCAL_PATH)/opus/celt/arch.h \
     $(LOCAL_PATH)/opus/celt/bands.h \
     $(LOCAL_PATH)/opus/celt/celt.h \
@@ -62,7 +63,6 @@ LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus/src/mapping_matrix.h \
     $(LOCAL_PATH)/opus/src/mlp.h \
     $(LOCAL_PATH)/opus/src/tansig_table.h \
-    $(LOCAL_PATH)/opus/config.h \
     $(LOCAL_PATH)/opus/silk/debug.h \
     $(LOCAL_PATH)/opus/silk/control.h \
     $(LOCAL_PATH)/opus/silk/errors.h \
