@@ -26,24 +26,7 @@ LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus/silk/mips \
 
 LOCAL_SRC_FILES := \
-    $(LOCAL_PATH)/opus/celt/bands.c \
-    $(LOCAL_PATH)/opus/celt/celt.c \
-    $(LOCAL_PATH)/opus/celt/celt_encoder.c \
-    $(LOCAL_PATH)/opus/celt/celt_decoder.c \
-    $(LOCAL_PATH)/opus/celt/cwrs.c \
-    $(LOCAL_PATH)/opus/celt/entcode.c \
-    $(LOCAL_PATH)/opus/celt/entdec.c \
-    $(LOCAL_PATH)/opus/celt/entenc.c \
-    $(LOCAL_PATH)/opus/celt/kiss_fft.c \
-    $(LOCAL_PATH)/opus/celt/laplace.c \
-    $(LOCAL_PATH)/opus/celt/mathops.c \
-    $(LOCAL_PATH)/opus/celt/mdct.c \
-    $(LOCAL_PATH)/opus/celt/modes.c \
-    $(LOCAL_PATH)/opus/celt/pitch.c \
-    $(LOCAL_PATH)/opus/celt/celt_lpc.c \
-    $(LOCAL_PATH)/opus/celt/quant_bands.c \
-    $(LOCAL_PATH)/opus/celt/rate.c \
-    $(LOCAL_PATH)/opus/celt/vq.c \
+    $(shell find $(LOCAL_PATH)/opus/celt -type f -name '*.c')
     $(LOCAL_PATH)/opus/src/opus.c \
     $(LOCAL_PATH)/opus/src/opus_decoder.c \
     $(LOCAL_PATH)/opus/src/opus_encoder.c \
