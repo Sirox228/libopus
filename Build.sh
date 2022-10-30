@@ -12,6 +12,7 @@ echo "starting"
 cp -r opus/config.h opus/src/config.h
 cp -r opus/config.h opus/celt/config.h
 cp -r opus/config.h opus/silk/config.h
+ls opus/src
 
 ${NDK}/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
 
