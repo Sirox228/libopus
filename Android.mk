@@ -4,7 +4,9 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := libopus
 
-LOCAL_CFLAGS := -DHAVE_CONFIG_H
+LOCAL_CFLAGS := -DHAVE_CONFIG_H \
+    -ffast-math -fsigned-char -O2 -fPIC -DPIC \
+    -DBYTE_ORDER=LITTLE_ENDIAN
 
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus \
@@ -186,7 +188,7 @@ LOCAL_SRC_FILES := \
 
 ifeq ($(strip $(TARGET_ARCH)),arm)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += -DCPU_ARM 
+    LOCAL_CFLAGS += -DCPU_ARM -D_ARM_ASSEM_
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
@@ -206,7 +208,7 @@ endif
 
 ifeq ($(strip $(TARGET_ARCH)),arm64)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += -DCPU_ARM
+    LOCAL_CFLAGS += -DCPU_ARM -D_ARM_ASSEM_
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
