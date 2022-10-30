@@ -22,5 +22,20 @@ jobs:
           
       - uses: actions/upload-artifact@v2
         with:
-          name: opus
-          path: obj/local
+          name: opus-arm64-v8a
+          path: obj/local/arm64-v8a/libopus.a
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: opus-armeabi-v7a
+          path: obj/local/armeabi-v7a/libopus.a
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: opus-x86
+          path: obj/local/x86/libopus.a
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: opus-x86_64
+          path: obj/local/x86_64/libopus.a
