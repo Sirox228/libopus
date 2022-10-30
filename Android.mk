@@ -201,7 +201,7 @@ ifeq ($(strip $(TARGET_ARCH)),x86)
         $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c \
         $(LOCAL_PATH)/opus/celt/x86/pitch_sse.c \
         $(LOCAL_PATH)/opus/celt/x86/pitch_sse2.c \
-        $(LOCAL_PATH)/opus/celt/x86/vq_sse2.c \
+        $(LOCAL_PATH)/opus/celt/x86/vq_sse2.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),arm64)
