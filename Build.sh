@@ -9,7 +9,7 @@ cd ../
 echo "starting"
 
 ./aarch64-linux-android-as --help
-./aarch64-linux-android-as -o opus/celt/armopt.o opus/celt/armopt.s
+./aarch64-linux-android-as -o opus/celt/arm/armopt.o opus/celt/arm/armopt.s
 
 ${NDK}/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
 
