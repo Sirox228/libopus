@@ -33,7 +33,7 @@ LOCAL_CFLAGS := \
     -DPACKAGE_URL="" \
     -DPACKAGE_VERSION="unknown" \
     -DSTDC_HEADERS=1 \
-    -DVAR_ARRAYS=1 \
+    -DVAR_ARRAYS=1
 
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus \
@@ -261,7 +261,7 @@ ifeq ($(strip $(TARGET_ARCH)),arm64)
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
-        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c \
+        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),x86_64)
