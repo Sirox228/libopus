@@ -266,16 +266,7 @@ ifeq ($(strip $(TARGET_ARCH)),arm64)
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
-        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
-        $(LOCAL_PATH)/opus/celt/arm/armopts.s \
-        $(LOCAL_PATH)/opus/celt/arm/celt_neon_intr.c \
-        $(LOCAL_PATH)/opus/celt/arm/pitch_neon_intr.c \
         $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c \
-        $(LOCAL_PATH)/opus/silk/arm/biquad_alt_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/LPC_inv_pred_gain_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/NSQ_del_dec_neon_intr.c \
-        $(LOCAL_PATH)/opus/silk/arm/NSQ_neon.c \
-        $(LOCAL_PATH)/opus/silk/fixed/arm/warped_autocorrelation_FIX_neon_intr.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),x86_64)
