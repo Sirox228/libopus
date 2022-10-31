@@ -225,8 +225,8 @@ ifeq ($(strip $(TARGET_ARCH)),arm)
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
-        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
         $(LOCAL_PATH)/opus/celt/arm/armopts.s \
+        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
         $(LOCAL_PATH)/opus/celt/arm/celt_neon_intr.c \
         $(LOCAL_PATH)/opus/celt/arm/pitch_neon_intr.c \
         $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c \
@@ -268,8 +268,8 @@ ifeq ($(strip $(TARGET_ARCH)),arm64)
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
-        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
         $(LOCAL_PATH)/opus/celt/arm/armopts.s \
+        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
         $(LOCAL_PATH)/opus/celt/arm/celt_neon_intr.c \
         $(LOCAL_PATH)/opus/celt/arm/pitch_neon_intr.c \
         $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c \
