@@ -12,10 +12,12 @@ LOCAL_CFLAGS := \
     -DENABLE_ASSERTIONS=1 \
     -DENABLE_HARDENING=1 \
     -DFLOAT_APPROX=1 \
+    -DHAVE_DLFCN_H=1 \
     -DHAVE_INTTYPES_H=1 \
     -DHAVE_LRINT=1 \
     -DHAVE_LRINTF=1 \
     -DHAVE_MEMORY_H=1 \
+    -DHAVE_ALLOCA_H=1 \
     -DHAVE_STDINT_H=1 \
     -DHAVE_STDLIB_H=1 \
     -DHAVE_STRINGS_H=1 \
@@ -23,6 +25,7 @@ LOCAL_CFLAGS := \
     -DHAVE_SYS_STAT_H=1 \
     -DHAVE_SYS_TYPES_H=1 \
     -DHAVE_UNISTD_H=1 \
+    -DHAVE___MALLOC_HOOK=1 \
     -DLT_OBJDIR=".libs/" \
     -DOPUS_BUILD \
     -DOPUS_HAVE_RTCD=1 \
@@ -33,7 +36,9 @@ LOCAL_CFLAGS := \
     -DPACKAGE_URL="" \
     -DPACKAGE_VERSION="unknown" \
     -DSTDC_HEADERS=1 \
-    -DVAR_ARRAYS=1
+    -DUSE_ALLOCA=1 \
+    -DVAR_ARRAYS=1 \
+    -DOPUS_CHECK_ASM=1
 
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus \
@@ -257,11 +262,28 @@ endif
 
 ifeq ($(strip $(TARGET_ARCH)),arm64)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += -DCPU_ARM -D_ARM_ASSEM_
+    LOCAL_CFLAGS += -DCPU_ARM -D_ARM_ASSEM_ \
+        -DOPUS_ARM_ASM \
+        -DOPUS_ARM_INLINE_NEON \
+        -DOPUS_ARM_MAY_HAVE_NEON \
+        -DOPUS_ARM_MAY_HAVE_NEON_INTR \
+        -DOPUS_ARM_PRESUME_NEON \
+        -DOPUS_ARM_PRESUME_AARCH64_NEON_INTR \
+        -DOPUS_ARM_PRESUME_NEON_INTR \
+        -mfpu=neon
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
-        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c
+        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
+        $(LOCAL_PATH)/opus/celt/arm/armopts.s \
+        $(LOCAL_PATH)/opus/celt/arm/celt_neon_intr.c \
+        $(LOCAL_PATH)/opus/celt/arm/pitch_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c \
+        $(LOCAL_PATH)/opus/silk/arm/biquad_alt_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/LPC_inv_pred_gain_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/NSQ_del_dec_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/NSQ_neon.c \
+        $(LOCAL_PATH)/opus/silk/fixed/arm/warped_autocorrelation_FIX_neon_intr.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),x86_64)
