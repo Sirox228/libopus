@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: aaaa
+          name: config
           path: opus/config.h
           
       - uses: actions/upload-artifact@v2
