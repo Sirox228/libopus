@@ -226,7 +226,8 @@ ifeq ($(strip $(TARGET_ARCH)),arm)
         -DOPUS_ARM_MAY_HAVE_NEON \
         -DOPUS_ARM_MAY_HAVE_NEON_INTR \
         -DOPUS_ARM_PRESUME_NEON \
-        -DOPUS_ARM_PRESUME_NEON_INTR
+        -DOPUS_ARM_PRESUME_NEON_INTR \
+        -mfpu=neon
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
@@ -268,7 +269,8 @@ ifeq ($(strip $(TARGET_ARCH)),arm64)
         -DOPUS_ARM_MAY_HAVE_NEON_INTR \
         -DOPUS_ARM_PRESUME_NEON \
         -DOPUS_ARM_PRESUME_AARCH64_NEON_INTR \
-        -DOPUS_ARM_PRESUME_NEON_INTR
+        -DOPUS_ARM_PRESUME_NEON_INTR \
+        -mfpu=neon
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
