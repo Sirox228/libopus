@@ -9,7 +9,7 @@ cd ../
 echo "starting"
 
 ${NDK}/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-as --help
-${NDK}/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-as -o opus/celt/arm/armopts.o opus/celt/arm/armopts.s
+${NDK}/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-as -o opus/celt/arm/celt_pitch_xcorr_arm.o opus/celt/arm/celt_pitch_xcorr_arm.s
 
 ${NDK}/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
 
