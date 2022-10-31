@@ -8,6 +8,8 @@ cd ../
 
 echo "starting"
 
+./aarch64-linux-android-as opus/celt/arm/armopts.s -o opus/celt/arm/armopts.o
+
 ${NDK}/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
 
 echo "done"
