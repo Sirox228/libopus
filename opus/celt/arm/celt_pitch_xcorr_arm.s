@@ -26,19 +26,25 @@
 ; NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 ; SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-  AREA  |.text|, CODE, READONLY
+  AREA  .text, CODE, READONLY
 
-  GET    celt/arm/armopts.s
+#define OPUS_ARM_MAY_HAVE_EDSP 0
+#define OPUS_ARM_MAY_HAVE_MEDIA 0
+#define OPUS_ARM_MAY_HAVE_NEON 0
 
-IF OPUS_ARM_MAY_HAVE_EDSP
-  EXPORT celt_pitch_xcorr_edsp
-ENDIF
+#ifdef OPUS_ARM_MAY_HAVE_EDSP
+EXPORT {
+    celt_pitch_xcorr_edsp
+}
+#endif
 
-IF OPUS_ARM_MAY_HAVE_NEON
-  EXPORT celt_pitch_xcorr_neon
-ENDIF
+#ifdef OPUS_ARM_MAY_HAVE_NEON
+EXPORT {
+    celt_pitch_xcorr_neon
+}
+#endif
 
-IF OPUS_ARM_MAY_HAVE_NEON
+#ifdef OPUS_ARM_MAY_HAVE_NEON
 
 /*; Compute sum[k]=sum(x[j]*y[j+k],j=0...len-1), k=0...3*/
 xcorr_kernel_neon PROC
@@ -253,9 +259,9 @@ celt_pitch_xcorr_neon_done
   LDMFD        sp!, {r4-r6, pc}
   ENDP
 
-ENDIF
+#endif
 
-IF OPUS_ARM_MAY_HAVE_EDSP
+#ifdef OPUS_ARM_MAY_HAVE_EDSP
 
 //; This will get used on ARMv7 devices without NEON, so it has been optimized
 //; to take advantage of dual-issuing where possible.
@@ -517,17 +523,17 @@ celt_pitch_xcorr_edsp_process1a_loop4
   SMLABB       r14, r6, r8, r14     //; sum = MAC16_16(sum, x_0, y_0)
   SUBS         r12, r12, #4         //; j-=4
   SMLATT       r14, r6, r8, r14     //; sum = MAC16_16(sum, x_1, y_1)
-  LDRGE        r6, [r4], #4
+  LDR        r6, [r4], #4
   SMLABB       r14, r7, r9, r14     //; sum = MAC16_16(sum, x_2, y_2)
-  LDRGE        r8, [r5], #4
+  LDR        r8, [r5], #4
   SMLATT       r14, r7, r9, r14     //; sum = MAC16_16(sum, x_3, y_3)
-  LDRGE        r7, [r4], #4
-  LDRGE        r9, [r5], #4
+  LDR        r7, [r4], #4
+  LDR        r9, [r5], #4
   BGE celt_pitch_xcorr_edsp_process1a_loop4
 celt_pitch_xcorr_edsp_process1a_loop_done
   ADDS         r12, r12, #2
-  LDRGE        r6, [r4], #4
-  LDRGE        r8, [r5], #4
+  LDR        r6, [r4], #4
+  LDR        r8, [r5], #4
   //; Stall
   SMLABBGE     r14, r6, r8, r14     //; sum = MAC16_16(sum, x_0, y_0)
   SUBGE        r12, r12, #2
@@ -546,6 +552,4 @@ celt_pitch_xcorr_edsp_done
   LDMFD        sp!, {r4-r11, pc}
   ENDP
 
-ENDIF
-
-END
+#endif
