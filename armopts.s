@@ -27,10 +27,10 @@
 /* ; Set the following to 1 if we have EDSP instructions
      ;  (LDRD/STRD, etc., ARMv5E and later).
 */
-OPUS_ARM_MAY_HAVE_EDSP DW 0
+constant OPUS_ARM_MAY_HAVE_EDSP 0
 
 /* ; Set the following to 1 if we have ARMv6 media instructions. */
-OPUS_ARM_MAY_HAVE_MEDIA DW 0
+constant OPUS_ARM_MAY_HAVE_MEDIA 0
 
 /* ; Set the following to 1 if we have NEON (some ARMv7) */
-OPUS_ARM_MAY_HAVE_NEON DW 1
+constant OPUS_ARM_MAY_HAVE_NEON 1
