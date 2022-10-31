@@ -284,7 +284,7 @@ xcorr_kernel_edsp_process4
 //  ; The multiplies must issue from pipeline 0, and can't dual-issue with each
 //  ; other. Every other instruction here dual-issues with a multiply, and is
 //  ; thus "free". There should be no stalls in the body of the loop.
-  SMLABB       r6, r12, r10, r6   //; sum[0] = MAC16_16(sum[0],x_0,y_0)
+  SMLABB       r6, r12, r10, r6   ; sum[0] = MAC16_16(sum[0],x_0,y_0)
   LDR          r14, [r4], #4      //; Load x[2...3]
   SMLABT       r7, r12, r10, r7   //; sum[1] = MAC16_16(sum[1],x_0,y_1)
   SUBS         r2, r2, #4         //; j-=4
