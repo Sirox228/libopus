@@ -2,7 +2,7 @@ NDK=${ANDROID_NDK_HOME}
 
 cd opus
 ./autogen.sh
-FLAGS="--enable-float-approx=yes --enable-custom-modes=yes --enable-assertions=yes --disable-doc --disable-extra-programs --enable-asm=yes"
+FLAGS="--enable-float-approx=yes --enable-check-asm --enable-custom-modes=yes --enable-assertions=yes --disable-doc --disable-extra-programs --enable-asm=yes"
 ./configure $FLAGS
 cd ../
 
