@@ -4,9 +4,41 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := libopus
 
-LOCAL_CFLAGS := -DHAVE_CONFIG_H \
+LOCAL_CFLAGS := \
     -ffast-math -fsigned-char -O2 -fPIC -DPIC \
-    -DBYTE_ORDER=LITTLE_ENDIAN
+    -DBYTE_ORDER=LITTLE_ENDIAN \
+    -DCPU_INFO_BY_ASM=1 \
+    -DCUSTOM_MODES=1 \
+    -DENABLE_ASSERTIONS=1 \
+    -DENABLE_HARDENING=1 \
+    -DFLOAT_APPROX=1 \
+    -DHAVE_DLFCN_H=1 \
+    -DHAVE_INTTYPES_H=1 \
+    -DHAVE_LRINT=1 \
+    -DHAVE_LRINTF=1 \
+    -DHAVE_MEMORY_H=1 \
+    -DHAVE_ALLOCA_H=1 \
+    -DHAVE_STDINT_H=1 \
+    -DHAVE_STDLIB_H=1 \
+    -DHAVE_STRINGS_H=1 \
+    -DHAVE_STRING_H=1 \
+    -DHAVE_SYS_STAT_H=1 \
+    -DHAVE_SYS_TYPES_H=1 \
+    -DHAVE_UNISTD_H=1 \
+    -DHAVE___MALLOC_HOOK=1 \
+    -DLT_OBJDIR=".libs/" \
+    -DOPUS_BUILD \
+    -DOPUS_HAVE_RTCD=1 \
+    -DPACKAGE_BUGREPORT="opus@xiph.org" \
+    -DPACKAGE_NAME="opus" \
+    -DPACKAGE_STRING="opus unknown" \
+    -DPACKAGE_TARNAME="opus" \
+    -DPACKAGE_URL="" \
+    -DPACKAGE_VERSION="unknown" \
+    -DSTDC_HEADERS=1 \
+    -DUSE_ALLOCA=1 \
+    -DVAR_ARRAYS=1 \
+    -DOPUS_CHECK_ASM=1
 
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/opus \
@@ -188,16 +220,38 @@ LOCAL_SRC_FILES := \
 
 ifeq ($(strip $(TARGET_ARCH)),arm)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += -DCPU_ARM -D_ARM_ASSEM_
+    LOCAL_CFLAGS += -DCPU_ARM -D_ARM_ASSEM_ \
+        -DOPUS_ARM_ASM \
+        -DOPUS_ARM_INLINE_NEON \
+        -DOPUS_ARM_MAY_HAVE_NEON \
+        -DOPUS_ARM_MAY_HAVE_NEON_INTR \
+        -DOPUS_ARM_PRESUME_NEON \
+        -DOPUS_ARM_PRESUME_NEON_INTR \
+        -mfpu=neon
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
-        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c
+        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
+        $(LOCAL_PATH)/opus/celt/arm/armopts.s \
+        $(LOCAL_PATH)/opus/celt/arm/celt_neon_intr.c \
+        $(LOCAL_PATH)/opus/celt/arm/pitch_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c \
+        $(LOCAL_PATH)/opus/silk/arm/biquad_alt_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/LPC_inv_pred_gain_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/NSQ_del_dec_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/NSQ_neon.c \
+        $(LOCAL_PATH)/opus/silk/fixed/arm/warped_autocorrelation_FIX_neon_intr.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),x86)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += -DCPU_X86
+    LOCAL_CFLAGS += -DCPU_X86 \
+        -DOPUS_X86_MAY_HAVE_AVX=1 \
+        -DOPUS_X86_MAY_HAVE_SSE=1 \
+        -DOPUS_X86_MAY_HAVE_SSE2=1 \
+        -DOPUS_X86_PRESUME_AVX=1 \
+        -DOPUS_X86_PRESUME_SSE=1 \
+        -DOPUS_X86_PRESUME_SSE2=1
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/x86/x86cpu.c \
         $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c \
@@ -208,16 +262,41 @@ endif
 
 ifeq ($(strip $(TARGET_ARCH)),arm64)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += -DCPU_ARM -D_ARM_ASSEM_
+    LOCAL_CFLAGS += -DCPU_ARM -D_ARM_ASSEM_ \
+        -DOPUS_ARM_ASM \
+        -DOPUS_ARM_INLINE_NEON \
+        -DOPUS_ARM_MAY_HAVE_NEON \
+        -DOPUS_ARM_MAY_HAVE_NEON_INTR \
+        -DOPUS_ARM_PRESUME_NEON \
+        -DOPUS_ARM_PRESUME_AARCH64_NEON_INTR \
+        -DOPUS_ARM_PRESUME_NEON_INTR \
+        -mfpu=neon
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/arm/armcpu.c \
         $(LOCAL_PATH)/opus/celt/arm/arm_celt_map.c \
-        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c
+        $(LOCAL_PATH)/opus/celt/arm/celt_pitch_xcorr_arm.s \
+        $(LOCAL_PATH)/opus/celt/arm/armopts.s \
+        $(LOCAL_PATH)/opus/celt/arm/celt_neon_intr.c \
+        $(LOCAL_PATH)/opus/celt/arm/pitch_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/arm_silk_map.c \
+        $(LOCAL_PATH)/opus/silk/arm/biquad_alt_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/LPC_inv_pred_gain_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/NSQ_del_dec_neon_intr.c \
+        $(LOCAL_PATH)/opus/silk/arm/NSQ_neon.c \
+        $(LOCAL_PATH)/opus/silk/fixed/arm/warped_autocorrelation_FIX_neon_intr.c
 endif
 
 ifeq ($(strip $(TARGET_ARCH)),x86_64)
     LOCAL_SDK_VERSION := 19
-    LOCAL_CFLAGS += -DCPU_X86
+    LOCAL_CFLAGS += -DCPU_X86 \
+        -DOPUS_X86_MAY_HAVE_AVX=1 \
+        -DOPUS_X86_MAY_HAVE_SSE=1 \
+        -DOPUS_X86_MAY_HAVE_SSE2=1 \
+        -DOPUS_X86_MAY_HAVE_SSE4_1=1 \
+        -DOPUS_X86_PRESUME_AVX=1 \
+        -DOPUS_X86_PRESUME_SSE=1 \
+        -DOPUS_X86_PRESUME_SSE2=1 \
+        -DOPUS_X86_PRESUME_SSE4_1=1
     LOCAL_SRC_FILES += \
         $(LOCAL_PATH)/opus/celt/x86/x86cpu.c \
         $(LOCAL_PATH)/opus/celt/x86/x86_celt_map.c \
