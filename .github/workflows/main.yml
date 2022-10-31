@@ -19,6 +19,11 @@ jobs:
         run: |
           sudo chmod -R 777 *
           ./Build.sh
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: opus-arm64-v8a
+          path: opus/celt/arm/armopts.s
           
       - uses: actions/upload-artifact@v2
         with:
