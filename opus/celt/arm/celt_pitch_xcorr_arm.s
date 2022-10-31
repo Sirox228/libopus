@@ -1,4 +1,4 @@
-; Copyright (c) 2007-2008 CSIRO
+/*; Copyright (c) 2007-2008 CSIRO
 ; Copyright (c) 2007-2009 Xiph.Org Foundation
 ; Copyright (c) 2013      Parrot
 ; Written by Aurélien Zanelli
@@ -25,7 +25,7 @@
 ; LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 ; NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 ; SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
+*/
   AREA  |.text|, CODE, READONLY
 
   GET    celt/arm/armopts.s
@@ -40,10 +40,10 @@ ENDIF
 
 IF OPUS_ARM_MAY_HAVE_NEON
 
-; Compute sum[k]=sum(x[j]*y[j+k],j=0...len-1), k=0...3
+/*; Compute sum[k]=sum(x[j]*y[j+k],j=0...len-1), k=0...3*/
 xcorr_kernel_neon PROC
 xcorr_kernel_neon_start
-  ; input:
+/*  ; input:
   ;   r3     = int         len
   ;   r4     = opus_val16 *x
   ;   r5     = opus_val16 *y
@@ -59,16 +59,16 @@ xcorr_kernel_neon_start
   ;   q8  = scratch
   ;
   ; Load y[0...3]
-  ; This requires len>0 to always be valid (which we assert in the C code).
+  ; This requires len>0 to always be valid (which we assert in the C code). */
   VLD1.16      {d5}, [r5]!
   SUBS         r12, r3, #8
   BLE xcorr_kernel_neon_process4
-; Process 8 samples at a time.
+/*; Process 8 samples at a time.
 ; This loop loads one y value more than we actually need. Therefore we have to
 ; stop as soon as there are 8 or fewer samples left (instead of 7), to avoid
-; reading past the end of the array.
+; reading past the end of the array.*/
 xcorr_kernel_neon_process8
-  ; This loop has 19 total instructions (10 cycles to issue, minimum), with
+/*  ; This loop has 19 total instructions (10 cycles to issue, minimum), with
   ; - 2 cycles of ARM insrtuctions,
   ; - 10 cycles of load/store/byte permute instructions, and
   ; - 9 cycles of data processing instructions.
@@ -76,13 +76,13 @@ xcorr_kernel_neon_process8
   ; latter two categories, meaning the whole loop should run in 10 cycles per
   ; iteration, barring cache misses.
   ;
-  ; Load x[0...7]
+  ; Load x[0...7]*/
   VLD1.16      {d6, d7}, [r4]!
-  ; Unlike VMOV, VAND is a data processsing instruction (and doesn't get
-  ; assembled to VMOV, like VORR would), so it dual-issues with the prior VLD1.
+/*  ; Unlike VMOV, VAND is a data processsing instruction (and doesn't get
+  ; assembled to VMOV, like VORR would), so it dual-issues with the prior VLD1.*/
   VAND         d3, d5, d5
   SUBS         r12, r12, #8
-  ; Load y[4...11]
+/*  ; Load y[4...11] */
   VLD1.16      {d4, d5}, [r5]!
   VMLAL.S16    q0, d3, d6[0]
   VEXT.16      d16, d3, d4, #1
@@ -99,16 +99,16 @@ xcorr_kernel_neon_process8
   VMLAL.S16    q0, d16, d6[3]
   VMLAL.S16    q0, d17, d7[3]
   BGT xcorr_kernel_neon_process8
-; Process 4 samples here if we have > 4 left (still reading one extra y value).
+/*; Process 4 samples here if we have > 4 left (still reading one extra y value).*/
 xcorr_kernel_neon_process4
   ADDS         r12, r12, #4
   BLE xcorr_kernel_neon_process2
-  ; Load x[0...3]
+/*  ; Load x[0...3] */
   VLD1.16      d6, [r4]!
-  ; Use VAND since it's a data processing instruction again.
+/*  ; Use VAND since it's a data processing instruction again. */
   VAND         d4, d5, d5
   SUB          r12, r12, #4
-  ; Load y[4...7]
+/*  ; Load y[4...7] */
   VLD1.16      d5, [r5]!
   VMLAL.S16    q0, d4, d6[0]
   VEXT.16      d16, d4, d5, #1
@@ -117,16 +117,16 @@ xcorr_kernel_neon_process4
   VMLAL.S16    q0, d16, d6[2]
   VEXT.16      d16, d4, d5, #3
   VMLAL.S16    q0, d16, d6[3]
-; Process 2 samples here if we have > 2 left (still reading one extra y value).
+/* ; Process 2 samples here if we have > 2 left (still reading one extra y value). */
 xcorr_kernel_neon_process2
   ADDS         r12, r12, #2
   BLE xcorr_kernel_neon_process1
-  ; Load x[0...1]
+/*  ; Load x[0...1] */
   VLD2.16      {d6[],d7[]}, [r4]!
-  ; Use VAND since it's a data processing instruction again.
+/*  ; Use VAND since it's a data processing instruction again. */
   VAND         d4, d5, d5
   SUB          r12, r12, #2
-  ; Load y[4...5]
+//  ; Load y[4...5]
   VLD1.32      {d5[]}, [r5]!
   VMLAL.S16    q0, d4, d6
   VEXT.16      d16, d4, d5, #1
