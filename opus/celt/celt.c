@@ -36,7 +36,6 @@
 #include "os_support.h"
 #include "mdct.h"
 #include <math.h>
-#include <string.h>
 #include "celt.h"
 #include "pitch.h"
 #include "bands.h"
@@ -303,16 +302,15 @@ const char *opus_strerror(int error)
 
 const char *opus_get_version_string(void)
 {
-    char res[] = "";
-    res = strcat("libopus ", PACKAGE_VERSION);
-#ifdef FIXED_POINT
-    res = strcat(res, "-fixed");
-#endif
-#ifdef FUZZING
-    res = strcat(res, "-fuzzing");
-#endif
-    return res;
+    return "libopus " PACKAGE_VERSION
     /* Applications may rely on the presence of this substring in the version
        string to determine if they have a fixed-point or floating-point build
        at runtime. */
+#ifdef FIXED_POINT
+          "-fixed"
+#endif
+#ifdef FUZZING
+          "-fuzzing"
+#endif
+          ;
 }
