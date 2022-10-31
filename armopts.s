@@ -27,7 +27,7 @@
 /* ; Set the following to 1 if we have EDSP instructions
      ;  (LDRD/STRD, etc., ARMv5E and later).
 */
-OPUS_ARM_MAY_HAVE_EDSP 1
+OPUS_ARM_MAY_HAVE_EDSP 0
 
 /* ; Set the following to 1 if we have ARMv6 media instructions. */
 OPUS_ARM_MAY_HAVE_MEDIA 1
